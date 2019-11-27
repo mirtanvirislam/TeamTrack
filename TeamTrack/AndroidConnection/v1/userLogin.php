@@ -4,7 +4,6 @@ require_once '../includes/DBOperations.php';
  
 $response = array(); 
  
- //authenticates with database whether info is correct or not
 if($_SERVER['REQUEST_METHOD']=='POST'){
     if(isset($_POST['email']) and isset($_POST['password'])){
         $db = new DBOperations(); 

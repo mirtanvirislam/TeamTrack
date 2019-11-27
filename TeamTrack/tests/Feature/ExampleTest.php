@@ -60,23 +60,5 @@ class ExampleTest extends TestCase
     }
 
 
-//About Page checked
-
-    public function test_AboutPageTest()
-    {
-        $response = $this->get('/about')
-
-        ->assertSee('About');
-    }
-
-
-    //Contact Page checked
-
-    public function test_ContactPageTest()
-    {
-        $response = $this->get('/contact')
-
-        ->assertSee('Contact');
-    }
     
 }

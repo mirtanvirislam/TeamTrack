@@ -41,7 +41,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-//assigning a team ID
+
     public function setCurrentTeamId($team_id)
     {
         $this->setting->current_team_id = $team_id;
@@ -53,7 +53,6 @@ class User extends Authenticatable
         return $this->setting->current_team_id;
     }
 
-    //assigning a team name
     public function getCurrentTeamName()
     {
         if($this->setting->current_team_id==0){

@@ -4,7 +4,6 @@ require_once '../includes/DBOperations.php';
  
 $response = array(); 
  
- //sends relevant data to user table for registering 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     if(
         isset($_POST['name']) and

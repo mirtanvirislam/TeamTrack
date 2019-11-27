@@ -13,21 +13,19 @@ use Validator;
 
 class TasksController extends Controller
 {
-//Show the form for editing the specified resource.
+
     public function index()
     {
         return redirect('/home');
     }
 
-   
-   //create a new sprint
 
     public function create($sprintId)
     {
         return redirect('/home');
     }
 
- //Store a newly created resource in storage.
+
     public function store(Request $request)
     {
 
@@ -55,9 +53,8 @@ class TasksController extends Controller
 
     }
 
-// Display the specified resource.
-    
-public function show($id)
+
+    public function show($id)
     {
         //fetching task data from the task table database
         //$task= Task::find($id);
@@ -65,13 +62,12 @@ public function show($id)
         return redirect('/home');
     }
 
-  //edit the specified resource in storage
-   
-  public function edit($id)
+
+    public function edit($id)
     {
         return redirect('/home');
     }
-// Update the specified resource in storage.
+
     public function update(Request $request, $taskId)
     {
         $task = Task::find($taskId);
@@ -100,7 +96,7 @@ public function show($id)
         }
     }
 
-//Remove the specified resource from storage.
+
     public function destroy($id)
     {
         $task = Task::find($id);

@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button buttonLogin;
     private ProgressDialog progressDialog;
 
-    //login data pushed to the database
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +50,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    //authenticates login data with database
     private void userLogin(){
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
@@ -115,8 +113,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-
-    //registers button click
     @Override
     public void onClick(View view) {
         if (view==buttonLogin){

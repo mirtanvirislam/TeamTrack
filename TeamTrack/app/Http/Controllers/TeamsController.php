@@ -9,7 +9,7 @@ use App\User;
 class TeamsController extends Controller
 {
 
-    //Show the form for editing the specified resource.
+    
     public function index() //delete this later
     {
        return redirect('/home');
@@ -23,13 +23,13 @@ class TeamsController extends Controller
         return redirect('/home');
     }
 
-//create a new masterview
+
     public function create() // delete later
     {
         return redirect('/home');
     }
     
-//Store a newly created resource in storage.
+
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -44,7 +44,6 @@ class TeamsController extends Controller
         return redirect('/home');
     }
 
-    // Display the specified resource.
 
     public function show($id)
     {
@@ -64,8 +63,6 @@ class TeamsController extends Controller
         return view('teams.show')->with('team',$team)->with('members', $membersArray);
     }
 
-
-    //Remove the specified resource from storage.
     public function destroy($id)
     {
         Team::deleteTeam($id);

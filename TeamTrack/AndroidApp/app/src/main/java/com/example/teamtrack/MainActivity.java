@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView textViewLogin;
 
-
-    //checks if logged and button definitions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewLogin.setOnClickListener(this);
     }
 
-    //takes in textfield inputs and push them to the database
     private void registerUser(){
 
 
@@ -102,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-
-    //register clicks
     @Override
     public void onClick(View view) {
         if (view == buttonRegister)
