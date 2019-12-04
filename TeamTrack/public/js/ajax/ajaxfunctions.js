@@ -1,5 +1,3 @@
-import { setSidebar } from "navigations";
-
 document.onload = initializeFunctions();
 
 function initializeFunctions() {

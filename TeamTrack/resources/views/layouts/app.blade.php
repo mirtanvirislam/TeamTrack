@@ -50,7 +50,9 @@
 
   @include('modals.new_team_modal')
 
-  @include('layouts.jsimports')
+  @include('js.jsimports')
+
+  {{-- @include('layouts.jsimports') --}}
 {{--   
   <script src="{{ asset('../../js/ajax/ajaxfunctions.js') }}"></script> --}}
 
