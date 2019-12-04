@@ -6,9 +6,6 @@
 
         <title>Teamtrack</title>
 
-        <!-- Scripts -->
-        
-
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -86,15 +83,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Teamtrack !
+                    Teamtrack
                 </div>
-            </div>     
-
+            </div>
         </div>
-        
-        <div id="example"></div>
-
-        <script src="{{ asset('js/app.js') }}"></script>
-        
     </body>
 </html>

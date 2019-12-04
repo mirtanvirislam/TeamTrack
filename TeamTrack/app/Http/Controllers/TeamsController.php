@@ -10,7 +10,7 @@ class TeamsController extends Controller
 {
 
     
-    public function index() //delete later
+    public function index() //delete this later
     {
        return redirect('/home');
     }
