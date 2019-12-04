@@ -49,6 +49,9 @@
   </body>
 
   @include('modals.new_team_modal')
+
   @include('layouts.jsimports')
+{{--   
+  <script src="{{ asset('../../js/ajax/ajaxfunctions.js') }}"></script> --}}
 
 </html>
