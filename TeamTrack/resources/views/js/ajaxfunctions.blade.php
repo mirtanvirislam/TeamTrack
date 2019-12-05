@@ -2,9 +2,9 @@
 
 @include('js.ajax.navigation')
 @include('js.ajax.createSprint')
-@include('js.ajax.setSprintId')
 @include('js.ajax.createTask')
 @include('js.ajax.editTask')
+@include('js.ajax.deleteTask')
 
 {{-- 
 <script type="text/javascript">
