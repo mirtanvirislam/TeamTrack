@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use App\Team;
 use App\Task;
 use App\User;
@@ -60,8 +61,7 @@ class TeamsController extends Controller
         {
             $membersArray[$member->id] = $member->name;
         }
-
-        return Task::first();
+        
         return view('teams.show')->with('team',$team)->with('members', $membersArray);
     }
 

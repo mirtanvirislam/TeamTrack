@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use DB;
 use App\Task;
 use App\Team;
+use App\Member;
 use Validator;
 
 class TasksController extends Controller
@@ -16,7 +17,12 @@ class TasksController extends Controller
 
     public function index()
     {
-        return redirect('/home');
+        $teams = Member::teamList(Auth::id());
+        return view('tasks.index')->with('teams',$teams);
+        
+       // return view('teams.show')->with('team',$team)->with('members', $membersArray);
+    
+       // return redirect('/home');
     }
 
 

@@ -24,8 +24,14 @@
             @endcan
 
             <br><br>
-
-            
+{{-- 
+            @foreach($tasks as $sprint)
+                 <h6>{{$sprint}}</h6>
+                @foreach($sprint as $task)
+                    <small>{{$task}}</small>
+                @endforeach
+            @endforeach
+             --}}
 
             <div class="sprint-view rowview">
 
