@@ -8,5 +8,5 @@
 <script src="{{ asset('template/scripts/shards-dashboards.1.1.0.min.js') }}"></script>
 <script src="{{ asset('template/scripts/app/app-blog-overview.1.1.0.js') }}"></script>
 
-@include('js.ajaxfunctions');
+@include('js.ajaxfunctions')
 
