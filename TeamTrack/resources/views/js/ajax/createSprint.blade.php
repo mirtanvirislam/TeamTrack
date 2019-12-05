@@ -22,8 +22,6 @@
                                 setEditTaskModalInfo();
                                 deleteTask();
                                 deleteSprint();
-                                setCommentTaskModalInfo();
-                                newComment();
                                 toggleIsCompleted()
                         });
 

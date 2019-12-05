@@ -62,20 +62,12 @@
                                     <div id="task{{$task->id}}">
                                         @if($task->is_completed)   
                                             <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>
-                                            <!-- <button class="btn btn-success" taskId="{{$task->id}}">
-                                                Completed
-                                            </button> -->
                                         @else
                                             <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}">
-                                            <!-- <button class="btn btn-light" taskId="{{$task->id}}">
-                                                InComplete
-                                            </button> -->
                                         @endif
                                         <h5 id="taskTitle"> {{$task->title}} </h5> 
                                         <!-- ({{$task->id}}) -->
                                         <h6 id="taskDescription"> {{$task->description}} </h6>
-
-                                        
 
                                         <h6 id="taskSprintId" hidden>{{$sprint->id}}</h6>
                                         <h6 id="taskAssignedToId" hidden>{{$task->user_id}}</h6>
@@ -107,26 +99,6 @@
                                             @endcan
                                             
                                         </div>
-                                        
-                                        <!-- <hr> <i>Comments </i> -->
-                                        <small>
-                                        @foreach($task->comments as $comment)
-                                            <div>
-                                                <br>
-                                                <b>{{App\User::find($comment->commentor_id)->name}} : </b> "{{$comment->content}}"
-                                                    
-                                            </div>
-                                        @endforeach
-                                        </small>
-
-                                        <br>
-                                        <button 
-                                            class="comment-task-modal btn btn-primary"
-                                            taskId="{{$task->id}}"
-                                            data-toggle="modal" 
-                                            data-target="#commentTaskModal">
-                                                Add Comment
-                                        </button>
                                     </div>
                                 </div>
                             @endforeach

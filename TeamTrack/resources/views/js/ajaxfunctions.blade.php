@@ -2,6 +2,7 @@
 
 @include('js.ajax.navigation')
 @include('js.ajax.createSprint')
+@include('js.ajax.deleteSprint')
 @include('js.ajax.createTask')
 @include('js.ajax.editTask')
 @include('js.ajax.deleteTask')
@@ -116,35 +117,6 @@
                });
           }
 
-          function deleteTask()
-          {
-               //console.log('deleteTask');
-               $(".delete-task").off('click').click(function(e){
-                    $taskId = $(this).attr('taskId');
-                    console.log("Delete task called : ".concat($taskId));
-                    //console.log("Delete task sprint: ".concat($(this).attr('sprint')));
-                    sprintId = $(this).attr('sprint');
-
-                    $.ajax({
-                    type:'DELETE',
-                    url: '/tasks/'.concat( $taskId ),
-                    success:function(data){
-                         $('.sprint-view').load( window.location.pathname.concat(' .sprint-view'),
-                              function(responseText, textStatus, XMLHttpRequest){
-                                   setSprintId();
-                                   setEditTaskModalInfo();
-                                   deleteTask();
-                                   deleteSprint();
-                                   setCommentTaskModalInfo();
-                                   newComment();
-                                   toggleIsCompleted()
-                         });
-                         console.log(data.message);  
-                    } 
-                    });
-               });
-          }
-
           
 
           function newMember()
@@ -177,32 +149,7 @@
           }
           
 
-          function deleteSprint()
-          {
-               $(".delete-sprint").off('click').click(function(e){
-                    console.log("deleteSprint called");
-                    var sprintId = $(this).attr('sprintId');
-
-                    $.ajax({
-                    type:'DELETE',
-                    url:'/sprints/'.concat(sprintId),
-                    data:{},
-                    success:function(data){
-                         console.log(data.message);
-                         $('.sprint-view').load( window.location.pathname.concat(' .sprint-view'),
-                              function(responseText, textStatus, XMLHttpRequest){
-                                   setSprintId();
-                                   setEditTaskModalInfo();
-                                   deleteTask();
-                                   deleteSprint();
-                                   setCommentTaskModalInfo();
-                                   newComment();
-                                   toggleIsCompleted()
-                         });
-                    } 
-                    });
-               });
-          }
+          
 
 
           function removeMember()

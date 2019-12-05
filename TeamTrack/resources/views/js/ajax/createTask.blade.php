@@ -40,8 +40,6 @@
                             setEditTaskModalInfo();
                             deleteTask();
                             deleteSprint();
-                            setCommentTaskModalInfo();
-                            newComment();
                             toggleIsCompleted();
                             console.log(data.message);
                     });
