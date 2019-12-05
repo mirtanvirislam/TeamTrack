@@ -24,6 +24,10 @@
                         {{Form::select('assignedTo', array($members), null, ['class' => 'form-control', "placeholder" => "Pick member" , 'required'])}}
                     </div>
                     <div class="form-group">
+                        {{Form::label('dueDate', 'Due Date')}}
+                        {{Form::text('dueDate', '' , ['id' => 'datepicker' , 'class' => 'form-control', 'placeholder' => 'Select due date'])}}
+                    </div>
+                    <div class="form-group">
                         {{Form::label('description', 'Task Description')}}
                         {{Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'Enter Task Description' ,  'required'])}}
                     </div>
@@ -36,3 +40,12 @@
         </div>
     {!! Form::close() !!}
 </div>
+
+ <script type="text/javascript">
+    $(function() {
+        $( "#datepicker" ).datepicker({
+    format: 'yyyy-mm-dd',
+    startDate: '-3d'
+});
+    });
+  </script>

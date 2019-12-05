@@ -15,7 +15,7 @@ class Task extends Model
 
     // Functions
 
-    public static function createTask($sprint_id, $assigned_to, $created_by, $title, $description)
+    public static function createTask($sprint_id, $assigned_to, $due_date, $created_by, $title, $description)
     {
         $newTask = Task::create([
             'sprint_id' => $sprint_id,
@@ -23,7 +23,7 @@ class Task extends Model
             'created_by' => $created_by,
             'title' => $title,
             'description' => $description,
-            'due_date' => '2020-08-12 00:00:00',
+            'due_date' => $due_date,
             'is_completed' => false 
         ]);
     }

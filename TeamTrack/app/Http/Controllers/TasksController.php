@@ -49,7 +49,8 @@ class TasksController extends Controller
             $description = $request->description;
             $sprintId = $request->sprintId;
             $assignedTo = $request->assignedTo;
-            Task::createTask($sprintId, $assignedTo, Auth::id(), $title, $description); //TODO : change input
+            $dueDate = $request->dueDate;
+            Task::createTask($sprintId, $assignedTo, $dueDate, Auth::id(), $title, $description); //TODO : change input
             return response()->json(['message'=>'done']);
         }
         else if($validator->fails())

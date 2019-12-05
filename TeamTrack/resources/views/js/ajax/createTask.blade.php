@@ -24,6 +24,7 @@
             var assignedTo = $("select[name=assignedTo]").val();
             var title = $("input[name=title]").val();
             var description = $("textarea[name=description]").val();
+            var dueDate = $("input[name=dueDate]").val();;
 ;
             if(title.length>180){
                     alert("Error : Title field entry too long.");
@@ -32,7 +33,7 @@
             $.ajax({
             type:'POST',
             url:'/tasks/create',
-            data:{sprintId:sprintId, assignedTo:assignedTo, title:title, description:description},
+            data:{sprintId:sprintId, assignedTo:assignedTo, dueDate:dueDate, title:title, description:description},
             success:function(data){
                     $('.sprint-view').load( window.location.pathname.concat(' .sprint-view'),
                         function(responseText, textStatus, XMLHttpRequest){
