@@ -1,8 +1,8 @@
 <script type="text/javascript">
 
-    document.onload = newSprint();
+    document.onload = createSprint();
 
-    function newSprint()
+    function createSprint()
         {
             //console.log('newSprint');
             $(".new-sprint-submit").off('click').click(function(e){

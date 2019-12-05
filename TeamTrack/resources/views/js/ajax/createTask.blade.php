@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-    document.onload = newTask();
+    document.onload = createTask();
     document.onload = setSprintId();
 
     function setSprintId()
@@ -12,7 +12,7 @@
         });
     }
 
-    function newTask()
+    function createTask()
     {
         console.log('newTask');
         $(".new-task-submit").off('click').click(function(e){
