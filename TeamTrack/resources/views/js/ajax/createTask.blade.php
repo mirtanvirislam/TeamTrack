@@ -7,7 +7,7 @@
     {
         //console.log('setSprintId');
         $(".add-task-modal").off('click').click(function(e){
-            console.log("setSprintId called");
+            //console.log("setSprintId called");
             document.getElementById("sprint-id-text-field").value = $(this).attr('href');
         });
     }
@@ -18,7 +18,7 @@
         $(".new-task-submit").off('click').click(function(e){
             e.preventDefault();
 
-            console.log('newTask called');
+            //console.log('newTask called');
             var sprintId = $("input[name=sprintId]").val();
             var taskId = $("input[name=taskId]").val();
             var assignedTo = $("select[name=assignedTo]").val();
@@ -44,7 +44,7 @@
                             console.log(data.message);
                     });
                     
-                    if(data.error.length>0){
+                    if(data.error){
                         alert(data.error);
                     }
                     

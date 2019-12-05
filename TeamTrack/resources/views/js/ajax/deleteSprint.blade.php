@@ -4,7 +4,7 @@
 
     function deleteSprint()
     {
-        console.log('deleteSprint called');
+        //console.log('deleteSprint called');
 
         $(".delete-sprint").off('click').click(function(e){
             console.log("deleteSprint called");

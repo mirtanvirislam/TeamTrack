@@ -6,7 +6,7 @@
     {
             
         $(".sidebar-link").off('click').click(function(e){
-            console.log('setSidebar called');
+            //console.log('setSidebar called');
             e.preventDefault();
             // Load the content from the link's href attribute
             $('.content').load( $(this).attr('href').concat(' .content'), function(responseText, textStatus, XMLHttpRequest){
