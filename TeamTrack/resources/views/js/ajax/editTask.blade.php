@@ -12,7 +12,7 @@
             sprintId = e.target.parentElement.parentElement.querySelector('#taskSprintId').innerHTML;
             dueDate = e.target.parentElement.parentElement.querySelector('#taskDueDate').innerHTML;
             assignedTo = e.target.parentElement.parentElement.querySelector('#taskAssignedToId').innerHTML;
-            title = e.target.parentElement.parentElement.querySelector('#taskTitle').innerHTML;
+            title = e.target.parentElement.parentElement.querySelector('#taskTitleText').innerHTML;
             description = e.target.parentElement.parentElement.querySelector('#taskDescription').innerHTML;
             console.log('setEditTaskModalInfo called. task: '.concat(taskId));
 

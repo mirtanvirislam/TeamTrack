@@ -39,7 +39,11 @@
                         <h3>Sprint {{$sprint->sprint_no}}
 
                         <a href="{{$sprint->id}}"  class="add-task-modal float-right" data-toggle="modal" data-target="#newTaskModal">
-                            <button class="btn btn-primary">Add Task</button>
+                            <button class="btn btn-primary"> 
+                            <i class="material-icons">
+                            add
+                            </i>
+                             Add Task</button>
                         </a>
 
                         </h3>
@@ -71,10 +75,15 @@
                                             
                                                 @can('updateTask', $task)
 
+                                                    
+
                                                     <button 
                                                         class="delete-task btn btn-danger float-right ml-1"
                                                         taskId="{{$task->id}}"
                                                         sprint="{{$sprint->id}}">
+                                                        <i class="material-icons">
+                                                            delete_forever
+                                                        </i>
                                                             Delete
                                                     </button>
 
@@ -84,34 +93,42 @@
                                                         sprint="{{$sprint->id}}" 
                                                         data-toggle="modal" 
                                                         data-target="#editTaskModal">
+                                                        <i class="fa fa-edit"></i>
                                                             Edit
                                                     </button>
                                                     
+                                                    <i class="btn float-right material-icons align-middle" data-toggle="collapse" data-target="#t{{$task->id}}" aria-expanded="false" aria-controls="collapseExample">
+                                                        info
+                                                    </i>
+
+                                                    <button
+                                                        class="btn btn-outline-secondary btn-pill float-right mr-4" disabled>
+                                                        {{$task->due_date}}
+                                                    </button>
+
+                                                    <button
+                                                        class="btn btn-outline-info btn-pill float-right mr-2" disabled>
+                                                        {{App\User::find($task->user_id)->name}}
+                                                    </button>
                                                     
                                                 @endcan                                            
                                          
-
                                         </h5> 
-                                        <h6 id="taskDescription"> {{$task->description}} </h6>
 
+
+                                        <h6 id="taskDescription" hidden> {{$task->description}} </h6>
                                         <h6 id="taskSprintId" hidden>{{$sprint->id}}</h6>
+                                        <h6 id="taskTitleText" hidden>{{$task->title}}</h6>
                                         <h6 id="taskAssignedToId" hidden>{{$task->user_id}}</h6>
                                         <h6 id="taskIsCompleted" hidden>{{$task->is_completed}}</h6>
                                         <h6 id="taskDueDate" hidden>{{$task->due_date}}</h6>
-                                    
-                                        <hr>
-                                            <div id="task{{$task->id}}AssignedTo" hidden>{{App\User::find($task->user_id)->id}}</div>
-
-                                            @if($task->due_date > "2020-10-10")
-                                                Greater than 2020.
-                                            @endif
-                                    
-                                            Due date : {{$task->due_date}} <br>
-                                            Assigned to : {{App\User::find($task->user_id)->name}} <br>
-                                            Created by : {{App\User::find($task->created_by)->name}}
-                                        <br><br>
-
-                                        
+                                        <div id="task{{$task->id}}AssignedTo" hidden>{{App\User::find($task->user_id)->id}}</div>
+                                                                     
+                                            <div class="collapse" id="t{{$task->id}}">
+                                                <h6>{{$task->description}}</h6>
+                                                Created by : {{App\User::find($task->created_by)->name}}
+                                            </div>
+                                                                           
                                     </div>
                                 </div>
                             @endforeach
