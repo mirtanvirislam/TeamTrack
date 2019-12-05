@@ -10,6 +10,7 @@
             taskId = $(this).attr('taskId');
             isCompleted = e.target.parentElement.parentElement.querySelector('#taskIsCompleted').innerHTML;
             sprintId = e.target.parentElement.parentElement.querySelector('#taskSprintId').innerHTML;
+            dueDate = e.target.parentElement.parentElement.querySelector('#taskDueDate').innerHTML;
             assignedTo = e.target.parentElement.parentElement.querySelector('#taskAssignedToId').innerHTML;
             title = e.target.parentElement.parentElement.querySelector('#taskTitle').innerHTML;
             description = e.target.parentElement.parentElement.querySelector('#taskDescription').innerHTML;
@@ -19,8 +20,10 @@
                 document.getElementById("isCompleted-field").value = isCompleted;
                 document.getElementById("task-id-text-field").value = taskId;
                 document.getElementById("assigned-to-field").value = assignedTo;
+                document.getElementById("datepicker2").value = dueDate;
                 document.getElementById("title-text-field").value = title;
                 document.getElementById("description-text-field").value = description;
+                
         });
     }
     
@@ -36,6 +39,7 @@
             var assignedTo = $("select[name=assignedTo2]").val();
             var title = $("input[name=title2]").val();
             var description = $("textarea[name=description2]").val();
+            var dueDate = $("input[name=dueDate2]").val();
 
             if(title.length>180){
                     alert("Error : Title field entry too long.");
@@ -44,7 +48,7 @@
             $.ajax({
             type:'PUT',
             url:'/tasks/'.concat(taskId),
-            data:{sprintId:sprintId, isCompleted:isCompleted, assignedTo:assignedTo, title:title, description:description},
+            data:{sprintId:sprintId, isCompleted:isCompleted, assignedTo:assignedTo, dueDate:dueDate, title:title, description:description},
             success:function(data){
                     $('.sprint-view').load( window.location.pathname.concat(' .sprint-view'),
                         function(responseText, textStatus, XMLHttpRequest){

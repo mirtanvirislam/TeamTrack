@@ -44,8 +44,7 @@
  <script type="text/javascript">
     $(function() {
         $( "#datepicker" ).datepicker({
-    format: 'yyyy-mm-dd',
-    startDate: '-3d'
-});
+            format: 'yyyy-mm-dd'
+        });
     });
   </script>

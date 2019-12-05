@@ -91,7 +91,7 @@ class TasksController extends Controller
             $task->title = $request->title;
             $task->description = $request->description;
             $task->user_id = $request->assignedTo;
-            //$task->due_date = now();
+            $task->due_date = $request->dueDate;
             $task->is_completed = $request->isCompleted;
             $task->save();
 

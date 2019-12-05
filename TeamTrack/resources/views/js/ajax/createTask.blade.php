@@ -24,7 +24,7 @@
             var assignedTo = $("select[name=assignedTo]").val();
             var title = $("input[name=title]").val();
             var description = $("textarea[name=description]").val();
-            var dueDate = $("input[name=dueDate]").val();;
+            var dueDate = $("input[name=dueDate]").val();
 ;
             if(title.length>180){
                     alert("Error : Title field entry too long.");

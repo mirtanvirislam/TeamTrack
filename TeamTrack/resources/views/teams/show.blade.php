@@ -78,9 +78,17 @@
                                         <h6 id="taskSprintId" hidden>{{$sprint->id}}</h6>
                                         <h6 id="taskAssignedToId" hidden>{{$task->user_id}}</h6>
                                         <h6 id="taskIsCompleted" hidden>{{$task->is_completed}}</h6>
+                                        <h6 id="taskDueDate" hidden>{{$task->due_date}}</h6>
                                     
                                         <hr>
                                             <div id="task{{$task->id}}AssignedTo" hidden>{{App\User::find($task->user_id)->id}}</div>
+
+                                            @if($task->due_date > "2020-10-10")
+                                                Greater than 2020.
+                                            @endif
+
+                                            {{-- Today : {{date("Y-m-d")}} --}}
+
                                             Due date : {{$task->due_date}} <br>
                                             Assigned to : {{App\User::find($task->user_id)->name}} <br>
                                             Created by : {{App\User::find($task->created_by)->name}}
