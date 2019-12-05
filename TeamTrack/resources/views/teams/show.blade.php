@@ -24,14 +24,6 @@
             @endcan
 
             <br><br>
-{{-- 
-            @foreach($tasks as $sprint)
-                 <h6>{{$sprint}}</h6>
-                @foreach($sprint as $task)
-                    <small>{{$task}}</small>
-                @endforeach
-            @endforeach
-             --}}
 
             <div class="sprint-view rowview">
 
@@ -44,11 +36,13 @@
                         <div class="sprint{{$sprint->id}}">
 
                         <!-- Sprint -->
-                        <h3>Sprint {{$sprint->sprint_no}}</h3>
+                        <h3>Sprint {{$sprint->sprint_no}}
 
-                        <a href="{{$sprint->id}}"  class="add-task-modal" data-toggle="modal" data-target="#newTaskModal">
+                        <a href="{{$sprint->id}}"  class="add-task-modal float-right" data-toggle="modal" data-target="#newTaskModal">
                             <button class="btn btn-primary">Add Task</button>
                         </a>
+
+                        </h3>
 
                         @can('deleteSprint', $sprint)
                             <button 
@@ -66,13 +60,38 @@
                                 
                                     <!-- Task -->
                                     <div id="task{{$task->id}}">
-                                        @if($task->is_completed)   
-                                            <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>
-                                        @else
-                                            <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}">
-                                        @endif
-                                        <h5 id="taskTitle"> {{$task->title}} </h5> 
-                                        <!-- ({{$task->id}}) -->
+                                        <h5 id="taskTitle">
+                                            @if($task->is_completed)   
+                                                <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>
+                                            @else
+                                                <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}">
+                                            @endif
+                                                {{$task->title}} 
+
+                                            
+                                                @can('updateTask', $task)
+
+                                                    <button 
+                                                        class="delete-task btn btn-danger float-right ml-1"
+                                                        taskId="{{$task->id}}"
+                                                        sprint="{{$sprint->id}}">
+                                                            Delete
+                                                    </button>
+
+                                                    <button 
+                                                        class="edit-task-modal btn btn-primary float-right" 
+                                                        taskId="{{$task->id}}" 
+                                                        sprint="{{$sprint->id}}" 
+                                                        data-toggle="modal" 
+                                                        data-target="#editTaskModal">
+                                                            Edit
+                                                    </button>
+                                                    
+                                                    
+                                                @endcan                                            
+                                         
+
+                                        </h5> 
                                         <h6 id="taskDescription"> {{$task->description}} </h6>
 
                                         <h6 id="taskSprintId" hidden>{{$sprint->id}}</h6>
@@ -86,34 +105,13 @@
                                             @if($task->due_date > "2020-10-10")
                                                 Greater than 2020.
                                             @endif
-
-                                            {{-- Today : {{date("Y-m-d")}} --}}
-
+                                    
                                             Due date : {{$task->due_date}} <br>
                                             Assigned to : {{App\User::find($task->user_id)->name}} <br>
                                             Created by : {{App\User::find($task->created_by)->name}}
                                         <br><br>
 
-                                        <div>
-                                            @can('updateTask', $task)
-                                                <button 
-                                                    class="edit-task-modal btn btn-primary " 
-                                                    taskId="{{$task->id}}" 
-                                                    sprint="{{$sprint->id}}" 
-                                                    data-toggle="modal" 
-                                                    data-target="#editTaskModal">
-                                                        Edit
-                                                </button>
-                                                
-                                                <button 
-                                                    class="delete-task btn btn-danger"
-                                                    taskId="{{$task->id}}"
-                                                    sprint="{{$sprint->id}}">
-                                                        Delete
-                                                </button>
-                                            @endcan
-                                            
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             @endforeach

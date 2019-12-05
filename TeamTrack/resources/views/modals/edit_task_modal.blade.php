@@ -33,7 +33,7 @@
                     </div>
                      <div class="form-group">
                         {{Form::label('dueDate2', 'Due Date')}}
-                        {{Form::text('dueDate2', '' , ['id' => 'datepicker2' , 'class' => 'form-control', 'placeholder' => 'Select due date'])}}
+                        {{Form::text('dueDate2', null , ['id' => 'datepicker2' , 'class' => 'form-control', 'placeholder' => 'Select due date'])}}
                     </div>
                     <div class="form-group">
                         {{Form::label('description2', 'Task Description')}}

@@ -14,8 +14,6 @@
    -->
   <ul class="navbar-nav border-left flex-row ">
 
-    
-
     <li class="nav-item border-right dropdown notifications">
       <a class="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="nav-link dropdown-toggle text-nowrap px-3">
