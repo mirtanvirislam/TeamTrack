@@ -40,6 +40,13 @@
               </li> -->
 
               <li class="nav-item">
+                <a class="nav-link sidebar-link" href="/tasks" id="dashboard">
+                  <i class="material-icons">vertical_split</i>
+                  <span>My Tasks</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a class="nav-link sidebar-link" href="/teams/{{$teamId}}" id="dashboard">
                   <i class="material-icons">vertical_split</i>
                   <span>Dashboard</span>

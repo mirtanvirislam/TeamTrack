@@ -11,6 +11,7 @@
                 <h5>
                     Make work life simpler, more pleasant and more productive.
                 </h5>
+                <input type="date" name="dueDate" value="2018-01-01"><br>
             </div>
         </div>
     </div>

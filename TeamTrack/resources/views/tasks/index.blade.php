@@ -50,26 +50,6 @@
                                                 Created by : {{App\User::find($task->created_by)->name}}
                                             <br><br>
 
-                                            <div>
-                                                @can('updateTask', $task)
-                                                    <button 
-                                                        class="edit-task-modal btn btn-primary " 
-                                                        taskId="{{$task->id}}" 
-                                                        sprint="{{$sprint->id}}" 
-                                                        data-toggle="modal" 
-                                                        data-target="#editTaskModal">
-                                                            Edit
-                                                    </button>
-                                                    
-                                                    <button 
-                                                        class="delete-task btn btn-danger"
-                                                        taskId="{{$task->id}}"
-                                                        sprint="{{$sprint->id}}">
-                                                            Delete
-                                                    </button>
-                                                @endcan
-                                                
-                                            </div>
                                         </div>
                                     </div>
                                 @endforeach

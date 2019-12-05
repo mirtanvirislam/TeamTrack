@@ -119,6 +119,5 @@
     
     @include('modals.new_task_modal')
     @include('modals.edit_task_modal')
-    @include('modals.comment_task_modal')
 
 @endsection
