@@ -1,35 +1,24 @@
 @include('js.ajax.csrf')
 
+{{-- Navigation --}}
 @include('js.ajax.navigation')
+
+{{-- Task functions --}}
 @include('js.ajax.createSprint')
 @include('js.ajax.deleteSprint')
 @include('js.ajax.createTask')
 @include('js.ajax.editTask')
 @include('js.ajax.deleteTask')
 
+{{-- Member functions --}}
+@include('js.ajax.addMember')
+@include('js.ajax.removeMember')
+
 {{-- 
 <script type="text/javascript">
 
         
           document.onload = initializeFunctions();
-
-          function initializeFunctions()
-          {
-               setSidebar();
-               newSprint();
-               setSprintId();
-               newTask();
-               editTask();
-               newMember();
-               deleteTask();
-               setEditTaskModalInfo();
-               deleteSprint();
-               removeMember();
-               setCommentTaskModalInfo();
-               newComment();
-               toggleIsCompleted();
-          }
-          
 
           function toggleIsCompleted()
           {
@@ -68,106 +57,6 @@
                                    toggleIsCompleted()
                          });
                          console.log(data.message);
-                    } 
-                    });
-               });
-          }
-
-          
-          function setCommentTaskModalInfo()
-          {
-               $(".comment-task-modal").off('click').click(function(e){
-
-                    taskId = $(this).attr('taskId');
-                    console.log('setCommentTaskModalInfo called. task: '.concat(taskId));
-
-                     document.getElementById("task-id-text-field3").value = taskId;
-               });
-          }
-
-          function newComment()
-          {
-               //console.log('newComment');
-               $(".comment-task-submit").off('click').click(function(e){
-                    e.preventDefault();
-
-                    console.log('newComment called');
-                    var taskId = $("input[name=taskId3]").val();
-                    var commentContent = $("textarea[name=commentContent]").val();
-
-                    $.ajax({
-                    type:'POST',
-                    url:'/comments',
-                    data:{taskId:taskId, commentContent:commentContent},
-                    success:function(data){
-                          $('.sprint-view').load( window.location.pathname.concat(' .sprint-view'),
-                              function(responseText, textStatus, XMLHttpRequest){
-                                   setSprintId();
-                                   setEditTaskModalInfo();
-                                   deleteTask();
-                                   deleteSprint();
-                                   setCommentTaskModalInfo();
-                                   newComment();
-                                   toggleIsCompleted()
-                         });
-                         console.log(data.message);  
-                         $("textarea[name=commentContent]").val('');
-                    } 
-                    });
-               });
-          }
-
-          
-
-          function newMember()
-          {
-               //console.log('newMember');
-               $(".new-member-submit").off('click').click(function(e){
-                    e.preventDefault();
-
-                    console.log("newMember called");
-                    var email = $("input[name=email]").val();
-                    //console.log(email);
-
-                    $.ajax({
-                    type:'POST',
-                    url:'/members',
-                    data:{email:email},
-                    success:function(data){
-                         console.log(data.message);
-                         $('.team-member').load( window.location.pathname.concat(' .team-member'),
-                              function(responseText, textStatus, XMLHttpRequest){
-                                   removeMember();
-                         });
-
-                         if(data.error.length>0){
-                              alert(data.error);
-                         }
-                    } 
-                    });
-               });
-          }
-          
-
-          
-
-
-          function removeMember()
-          {
-               $(".remove-member").off('click').click(function(e){
-                    console.log("removeMember called");
-                    var id = $(this).attr('userId');
-
-                    $.ajax({
-                    type:'DELETE',
-                    url:'/members/'.concat(id),
-                    data:{},
-                    success:function(data){
-                         console.log(data.message);
-                         $('.team-member').load( window.location.pathname.concat(' .team-member'),
-                              function(responseText, textStatus, XMLHttpRequest){
-                                   removeMember();
-                         });
                     } 
                     });
                });
