@@ -9,11 +9,11 @@
                     console.log('toggleIsCompleted called');
 
                     taskId = $(this).attr('taskId');
-                    isCompleted = e.target.parentElement.querySelector('#taskIsCompleted').innerHTML;
-                    sprintId = e.target.parentElement.querySelector('#taskSprintId').innerHTML;
-                    assignedTo = e.target.parentElement.querySelector('#taskAssignedToId').innerHTML;
-                    title = e.target.parentElement.querySelector('#taskTitle').innerHTML;
-                    description = e.target.parentElement.querySelector('#taskDescription').innerHTML;
+                    isCompleted = e.target..parentElement.querySelector('#taskIsCompleted').innerHTML;
+                    sprintId = e.target.parentElement.parentElement.querySelector('#taskSprintId').innerHTML;
+                    assignedTo = e.target.parentElement.parentElement.querySelector('#taskAssignedToId').innerHTML;
+                    title = e.target.parentElement.parentElement.querySelector('#taskTitleText').innerHTML;
+                    description = e.target.parentElement.parentElement.querySelector('#taskDescription').innerHTML;
                     console.log('toggleIsCompleted called. task: '.concat(taskId));
 
                     //Toggle isCompleted state
