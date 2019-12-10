@@ -3,7 +3,6 @@
 @section('content')
 
 
-
     <div id="container">
 
         <h1 id="pageTitle">{{$team->name}} Dashboard</h1>
@@ -31,12 +30,13 @@
                                   
                 Total task : {{$total_task_count}} <br>
                 Completed task : {{$completed_task_count}} <br>
-                Incomplete task : {{ $total_task_count - $completed_task_count }} <hr>
+                Incomplete task : {{ $total_task_count - $completed_task_count }} <br>
+                Overdue task : <br>
+                <hr>
                 
                 {{count($team->backlog->sprints)}} Sprints <br><br>
-                
-            </div>
-
+                <div hidden> {{date_default_timezone_set('Asia/Dhaka') }} </div>
+                       
                 <!-- Add Exception for new user without team -->
                 @foreach($team->backlog->sprints as $sprint)
                     <div class="well cardview card m-2 p-3">
@@ -70,8 +70,7 @@
                                 <div class="card m-2 p-3">
                                 
                                     <!-- Task -->
-                                    <div id="task{{$task->id}}">
-                                    {{$task->id}}
+                                    <div id="task{{$task->id}}">                                    
                                         <h5 id="taskTitle">
                                             @if($task->is_completed)   
                                                 <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>
@@ -114,11 +113,15 @@
                                             </button>
 
                                             <button
-                                                class="btn btn-outline-info btn-pill float-right mr-2" disabled>
+                                                class="btn btn-outline-primary btn-pill float-right mr-2" disabled>
                                                 {{App\User::find($task->user_id)->name}}
                                             </button>
                                                 
-                                                                                           
+                                            @if( ($task->due_date < date('Y-m-d')) && $task->is_completed==0 )
+                                                <button class="btn btn-danger btn-pill float-right mr-4" disabled>
+                                                    Overdue : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
+                                                </button>
+                                            @endif                                               
                                          
                                         </h5> 
 

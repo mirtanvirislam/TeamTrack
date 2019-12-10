@@ -2,11 +2,12 @@
 
 @section('content')
 
+
     <h2>My tasks</h2>
 
-    @foreach($teams as $team)
-         
-		<br>
+	@foreach($teams as $team)
+		
+		<br>  <div hidden> {{date_default_timezone_set('Asia/Dhaka') }} </div>
 
 		<div class="sprint-view rowview">
 
@@ -58,7 +59,17 @@
 										<button
 											class="btn btn-outline-primary btn-pill float-right mr-2" disabled>
 											Sprint {{$sprint->sprint_no}}
-										</button>                                                  
+										</button>   
+
+										@if( ($task->due_date < date('Y-m-d')) && $task->is_completed==0 )
+											<button class="btn btn-danger btn-pill float-right mr-4" disabled>
+												Overdue : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
+											</button>
+										@else
+											<button class="btn btn-secondary btn-pill float-right mr-4" disabled>
+												Due : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
+											</button>
+										@endif                                              
 										
 									</h5> 
 
@@ -108,6 +119,7 @@
 			@endforeach 
 		</div>
 
-    @endforeach
+	@endforeach
+	
 
 @endsection
