@@ -9,11 +9,12 @@
                     console.log('toggleIsCompleted called');
 
                     taskId = $(this).attr('taskId');
-                    isCompleted = e.target..parentElement.querySelector('#taskIsCompleted').innerHTML;
+                    isCompleted = e.target.parentElement.parentElement.querySelector('#taskIsCompleted').innerHTML;
                     sprintId = e.target.parentElement.parentElement.querySelector('#taskSprintId').innerHTML;
                     assignedTo = e.target.parentElement.parentElement.querySelector('#taskAssignedToId').innerHTML;
                     title = e.target.parentElement.parentElement.querySelector('#taskTitleText').innerHTML;
                     description = e.target.parentElement.parentElement.querySelector('#taskDescription').innerHTML;
+                    dueDate = e.target.parentElement.parentElement.querySelector('#taskDueDate').innerHTML;
                     console.log('toggleIsCompleted called. task: '.concat(taskId));
 
                     //Toggle isCompleted state
@@ -26,7 +27,7 @@
                     $.ajax({
                     type:'PUT',
                     url:'/tasks/'.concat(taskId),
-                    data:{sprintId:sprintId, isCompleted:isCompleted, assignedTo:assignedTo, title:title, description:description},
+                    data:{sprintId:sprintId, isCompleted:isCompleted, assignedTo:assignedTo, dueDate:dueDate, title:title, description:description},
                     success:function(data){
                          $('.sprint-view').load( window.location.pathname.concat(' .sprint-view'),
                               function(responseText, textStatus, XMLHttpRequest){
@@ -34,9 +35,13 @@
                                    setEditTaskModalInfo();
                                    deleteTask();
                                    deleteSprint();
-                                   toggleIsCompleted()
+                                   toggleIsCompleted();
+                                   console.log(data.message);
                          });
-                         console.log(data.message);
+                         
+                         if(data.error.length>0){
+                              alert(data.error);
+                         }
                     } 
                     });
                });

@@ -15,6 +15,8 @@
             <a class="new-sprint-submit">
                 <button class="btn btn-primary">Add Sprint</button>
             </a> 
+
+            
             
             @can('destroyTeam', $team)
                 <br><br>
@@ -26,9 +28,14 @@
             <br><br>
 
             <div class="sprint-view rowview">
-
-                {{count($team->backlog->sprints)}} Sprints
-                <hr>
+                                  
+                Total task : {{$total_task_count}} <br>
+                Completed task : {{$completed_task_count}} <br>
+                Incomplete task : {{ $total_task_count - $completed_task_count }} <hr>
+                
+                {{count($team->backlog->sprints)}} Sprints <br><br>
+                
+            </div>
 
                 <!-- Add Exception for new user without team -->
                 @foreach($team->backlog->sprints as $sprint)
@@ -64,6 +71,7 @@
                                 
                                     <!-- Task -->
                                     <div id="task{{$task->id}}">
+                                    {{$task->id}}
                                         <h5 id="taskTitle">
                                             @if($task->is_completed)   
                                                 <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>

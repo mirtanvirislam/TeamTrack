@@ -61,8 +61,26 @@ class TeamsController extends Controller
         {
             $membersArray[$member->id] = $member->name;
         }
+
+        $total_task_count = 0;
+        $completed_task_count = 0;
+        $incomplete_task_count = 0;
+
+        foreach($team->backlog->sprints as $sprint)
+        {
+            $total_task_count += count($sprint->tasks);
+
+            foreach($sprint->tasks as $task)
+            {
+                if($task->is_completed)
+                {
+                    $completed_task_count++;
+                }
+            }
+        }
+
         
-        return view('teams.show')->with('team',$team)->with('members', $membersArray);
+        return view('teams.show')->with('team',$team)->with('members', $membersArray)->with('total_task_count', $total_task_count)->with('completed_task_count',$completed_task_count);
     }
 
     public function destroy($id)
