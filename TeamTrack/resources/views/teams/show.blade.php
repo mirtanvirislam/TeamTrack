@@ -71,47 +71,46 @@
                                                 <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}">
                                             @endif
                                                 {{$task->title}} 
+                                        
+                                            @can('updateTask', $task)                                                 
 
-                                            
-                                                @can('updateTask', $task)
-
-                                                    
-
-                                                    <button 
-                                                        class="delete-task btn btn-danger float-right ml-1"
-                                                        taskId="{{$task->id}}"
-                                                        sprint="{{$sprint->id}}">
-                                                        <i class="material-icons">
-                                                            delete_forever
-                                                        </i>
-                                                            Delete
-                                                    </button>
-
-                                                    <button 
-                                                        class="edit-task-modal btn btn-primary float-right" 
-                                                        taskId="{{$task->id}}" 
-                                                        sprint="{{$sprint->id}}" 
-                                                        data-toggle="modal" 
-                                                        data-target="#editTaskModal">
-                                                        <i class="fa fa-edit"></i>
-                                                            Edit
-                                                    </button>
-                                                    
-                                                    <i class="btn float-right material-icons align-middle" data-toggle="collapse" data-target="#t{{$task->id}}" aria-expanded="false" aria-controls="collapseExample">
-                                                        info
+                                                <button 
+                                                    class="delete-task btn btn-danger float-right ml-1"
+                                                    taskId="{{$task->id}}"
+                                                    sprint="{{$sprint->id}}">
+                                                    <i class="material-icons">
+                                                        delete_forever
                                                     </i>
+                                                        Delete
+                                                </button>
 
-                                                    <button
-                                                        class="btn btn-outline-secondary btn-pill float-right mr-4" disabled>
-                                                        {{$task->due_date}}
-                                                    </button>
+                                                <button 
+                                                    class="edit-task-modal btn btn-primary float-right" 
+                                                    taskId="{{$task->id}}" 
+                                                    sprint="{{$sprint->id}}" 
+                                                    data-toggle="modal" 
+                                                    data-target="#editTaskModal">
+                                                    <i class="fa fa-edit"></i>
+                                                        Edit
+                                                </button>
 
-                                                    <button
-                                                        class="btn btn-outline-info btn-pill float-right mr-2" disabled>
-                                                        {{App\User::find($task->user_id)->name}}
-                                                    </button>
-                                                    
-                                                @endcan                                            
+                                                @endcan
+                                                
+                                            <i class="btn float-right material-icons align-middle" data-toggle="collapse" data-target="#t{{$task->id}}" aria-expanded="false" aria-controls="collapseExample">
+                                                info
+                                            </i>
+
+                                            <button
+                                                class="btn btn-outline-secondary btn-pill float-right mr-4" disabled>
+                                                {{$task->due_date}}
+                                            </button>
+
+                                            <button
+                                                class="btn btn-outline-info btn-pill float-right mr-2" disabled>
+                                                {{App\User::find($task->user_id)->name}}
+                                            </button>
+                                                
+                                                                                           
                                          
                                         </h5> 
 
