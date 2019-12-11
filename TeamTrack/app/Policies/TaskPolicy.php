@@ -17,7 +17,7 @@ class TaskPolicy
 
     public function updateTask(User $user, Task $task)
     {
-        return $user->id==$task->created_by;
+        return $user->id==$task->created_by || $user->id==$task->sprint->backlog->team->leader_id;
     }
 
     public function deleteTask(User $user, Task $task)

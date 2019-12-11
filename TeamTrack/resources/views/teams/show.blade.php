@@ -11,7 +11,7 @@
 
         <div>
 
-            <a class="new-sprint-submit">
+            <a class="new-sprint-submit float-right">
                 <button class="btn btn-primary">Add Sprint</button>
             </a> 
 
@@ -22,9 +22,10 @@
                 {!! Form::open(['action' => ['TeamsController@destroy', $team->id], 'method' => 'DELETE', 'enctype' => 'multipart/form-data']) !!}
                     {{Form::submit('Delete Team', ['class'=>'btn btn-danger'])}}
                 {!! Form::close() !!}
+                <br><br>
             @endcan
 
-            <br><br>
+            
 
             <div class="sprint-view rowview">
                                   
