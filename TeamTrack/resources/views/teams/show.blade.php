@@ -67,10 +67,11 @@
                         <hr>
                         Tasks ({{count($sprint->tasks)}}) :
                             @foreach($sprint->tasks as $task)
-                                <div class="card m-2 p-3">
+                                <div class="card m-2 pb-1 pt-3 pl-3 pr-3">
                                 
                                     <!-- Task -->
-                                    <div id="task{{$task->id}}">                                    
+                                    <div id="task{{$task->id}}">       
+
                                         <h5 id="taskTitle">
                                             @if($task->is_completed)   
                                                 <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>
@@ -101,7 +102,7 @@
                                                         Edit
                                                 </button>
 
-                                                @endcan
+                                            @endcan
                                                 
                                             <i class="btn float-right material-icons align-middle" data-toggle="collapse" data-target="#t{{$task->id}}" aria-expanded="false" aria-controls="collapseExample">
                                                 info
@@ -125,7 +126,6 @@
                                          
                                         </h5> 
 
-
                                         <h6 id="taskDescription" hidden> {{$task->description}} </h6>
                                         <h6 id="taskSprintId" hidden>{{$sprint->id}}</h6>
                                         <h6 id="taskTitleText" hidden>{{$task->title}}</h6>
@@ -134,10 +134,10 @@
                                         <h6 id="taskDueDate" hidden>{{$task->due_date}}</h6>
                                         <div id="task{{$task->id}}AssignedTo" hidden>{{App\User::find($task->user_id)->id}}</div>
                                                                      
-                                            <div class="collapse" id="t{{$task->id}}">
-                                                <h6>{{$task->description}}</h6>
-                                                Created by : {{App\User::find($task->created_by)->name}}
-                                            </div>
+                                        <div class="collapse" id="t{{$task->id}}">
+                                            <h6>{{$task->description}}</h6>
+                                            Created by : {{App\User::find($task->created_by)->name}}
+                                        </div>
                                                                            
                                     </div>
                                 </div>
