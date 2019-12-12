@@ -5,11 +5,11 @@
 
     <h2>My tasks</h2>
 
-	@foreach($teams as $team)
-		
-		<br>  <div hidden> {{date_default_timezone_set('Asia/Dhaka') }} </div>
+	<div class="sprint-view rowview">
 
-		<div class="sprint-view rowview">
+		@foreach($teams as $team)
+			
+			<br>  <div hidden> {{date_default_timezone_set('Asia/Dhaka') }} </div>
 
 			<!-- Add Exception for new user without team -->
 			@foreach($team->backlog->sprints as $sprint)
@@ -19,14 +19,14 @@
 					<div class="well cardview card m-2 pb-1 pt-3 pl-3 pr-3">
 						<div class="sprint{{$sprint->id}}">
 
-						<!-- Sprint -->
-						
-						<h5>
-							{{$team->name}}  
-							<small>
-								( Tasks : {{count($sprint->tasks->where('user_id', Auth::id()))}} )
-							</small>
-						</h5>
+							<!-- Sprint -->
+							
+							<h5>
+								{{$team->name}}  
+								<small>
+									( Tasks : {{count($sprint->tasks->where('user_id', Auth::id()))}} )
+								</small>
+							</h5>
 
 							@foreach($sprint->tasks->where('user_id', Auth::id()) as $task)
 								<div class="card m-2 p-3">
@@ -117,9 +117,10 @@
 					</div>
 				@endif
 			@endforeach 
-		</div>
 
-	@endforeach
+		@endforeach
+
+	</div>
 	
 
 @endsection
