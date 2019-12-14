@@ -40,11 +40,3 @@
         </div>
     {!! Form::close() !!}
 </div>
-
- <script type="text/javascript">
-    $(function() {
-        $( "#datepicker" ).datepicker({
-            format: 'yyyy-mm-dd'
-        });
-    });
-  </script>

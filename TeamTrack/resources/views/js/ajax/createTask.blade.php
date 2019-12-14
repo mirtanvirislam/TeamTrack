@@ -15,6 +15,11 @@
     function createTask()
     {
         console.log('newTask');
+
+        $( "#datepicker" ).datepicker({
+                format: 'yyyy-mm-dd'
+            });
+
         $(".new-task-submit").off('click').click(function(e){
             e.preventDefault();
 

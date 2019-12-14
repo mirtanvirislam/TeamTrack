@@ -155,4 +155,13 @@
     @include('modals.new_task_modal')
     @include('modals.edit_task_modal')
 
+     <script type="text/javascript">
+        console.log('load1');
+        $(function() {
+            $( "#datepicker" ).datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+
 @endsection
