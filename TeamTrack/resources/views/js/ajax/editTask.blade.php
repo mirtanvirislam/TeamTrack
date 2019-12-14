@@ -29,6 +29,10 @@
     
     function editTask()
     {
+        $( "#datepicker" ).datepicker({
+                format: 'yyyy-mm-dd'
+            });
+
         $(".edit-task-submit").off('click').click(function(e){
             e.preventDefault();
             console.log('editTask called');
