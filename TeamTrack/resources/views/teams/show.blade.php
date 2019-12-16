@@ -9,6 +9,8 @@
 
         <hr>
 
+        
+
         <div>
 
             <a class="new-sprint-submit float-right">
@@ -34,6 +36,55 @@
                 Incomplete task : {{ $total_task_count - $completed_task_count }} <br>
                 Overdue task : <br>
                 <hr>
+
+                <div>
+                
+                    <canvas id="canvas" width="400" height="200"></canvas>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+                    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+
+                    <script type="text/javascript">
+
+                        console.log( {{ implode(',',$sprints) }});
+
+                        var sprints = {{ count($team->backlog->sprints) }} ;
+
+                        var barChartData = {
+                            labels: [{{ implode(',', $sprints) }}],
+                            
+                        };
+                        window.onload = function() {
+                            var ctx = document.getElementById('canvas').getContext('2d');
+                            window.myBar = new Chart(ctx, {
+                                type: 'bar',
+                                data: barChartData,
+                                options: {
+                                    title: {
+                                        display: true,
+                                        
+                                    },
+                                    tooltips: {
+                                        mode: 'index',
+                                        intersect: false
+                                    },
+                                    responsive: true,
+                                    scales: {
+                                        xAxes: [{
+                                            stacked: true,
+                                        }],
+                                        yAxes: [{
+                                            stacked: true
+                                        }]
+                                    }
+                                }
+                            });
+                        };
+                    </script>
+
+
+                </div>
+        
                 
                 {{count($team->backlog->sprints)}} Sprints <br><br>
                 <div hidden> {{date_default_timezone_set('Asia/Dhaka') }} </div>
@@ -155,13 +206,17 @@
     @include('modals.new_task_modal')
     @include('modals.edit_task_modal')
 
-     <script type="text/javascript">
-        console.log('load1');
-        $(function() {
-            $( "#datepicker" ).datepicker({
-                format: 'yyyy-mm-dd'
-            });
+<script type="text/javascript">
+
+    console.log('load1');
+    $(function() {
+        $( "#datepicker" ).datepicker({
+            format: 'yyyy-mm-dd'
         });
-    </script>
+    });
+
+    
+
+</script>
 
 @endsection

@@ -65,10 +65,13 @@ class TeamsController extends Controller
         $total_task_count = 0;
         $completed_task_count = 0;
         $incomplete_task_count = 0;
+        $sprintArray;
+        $i = 0;
 
         foreach($team->backlog->sprints as $sprint)
         {
             $total_task_count += count($sprint->tasks);
+            $sprintArray[$i] = $sprint->sprint_no;
 
             foreach($sprint->tasks as $task)
             {
@@ -77,10 +80,16 @@ class TeamsController extends Controller
                     $completed_task_count++;
                 }
             }
+            $i++;
         }
 
         
-        return view('teams.show')->with('team',$team)->with('members', $membersArray)->with('total_task_count', $total_task_count)->with('completed_task_count',$completed_task_count);
+        return view('teams.show')
+            ->with('team',$team)
+            ->with('members', $membersArray)
+            ->with('total_task_count', $total_task_count)
+            ->with('completed_task_count',$completed_task_count)
+            ->with('sprints', $sprintArray);
     }
 
     public function destroy($id)

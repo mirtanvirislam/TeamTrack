@@ -1,8 +1,12 @@
 <html>
 
 @include('layouts.cssimports')
+@include('js.jsimports')
+{{-- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
-<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+<script src="https://www.chartjs.org/samples/latest/utils.js"></script> --}}
+
 <body>
     <div class="container p-4">
         <div class="row justify-content-center card p-4">
