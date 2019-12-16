@@ -95,7 +95,15 @@ class TeamsController extends Controller
                 }
                 else
                 {
+                    if($task->is_completed)
+                    {
+                        $completed_task_count++;
+                        $completed_task_on_current_sprint++;
+                    }
+                    else
+                    {
                     $scheduled_task_on_current_sprint++;
+                    }
                 }
             }
             $completed_task_array[$i] = $completed_task_on_current_sprint;

@@ -21,7 +21,8 @@
                             setEditTaskModalInfo();
                             deleteTask();
                             deleteSprint();
-                            toggleIsCompleted()
+                            toggleIsCompleted();
+                            loadChart();
                     });
                     console.log(data.message);  
             } 

@@ -9,10 +9,6 @@
 
         <h1 id="pageTitle">{{$team->name}} Dashboard</h1>
 
-        <hr>
-
-        
-
         <div>
 
             <a class="new-sprint-submit float-right">
@@ -34,23 +30,18 @@
             <div class="sprint-view rowview">
                                   
                 <div id='stat'>
-                    Total task : {{$total_task_count}} <br>
-                    Completed task : {{$completed_task_count}} <br>
-                    Incomplete task : {{ $total_task_count - $completed_task_count }} <br>
-                    Overdue task : 
+                    Total task : {{$total_task_count}} ,
+                    Completed task : {{$completed_task_count}} ,
+                    Incomplete task : {{ $total_task_count - $completed_task_count }} ,
+                    Overdue task :
+                    <div id="completed_task_array" hidden>{{ implode('', $completed_task_array) }}</div>
+                    <div id="overdue_task_array" hidden>{{ implode('', $overdue_task_array) }}</div>
+                    <div id="scheduled_task_array" hidden>{{ implode('', $scheduled_task_array) }}</div>
                 </div>
                 <br>
-                <hr>
-
-                <div>
                 
-                    <canvas id="canvas" width="400" height="200"></canvas>
+                <canvas id="canvas" width="600" height="200"></canvas>
 
-                    
-
-                </div>
-        
-                
                 {{count($team->backlog->sprints)}} Sprints <br><br>
                 <div hidden> {{date_default_timezone_set('Asia/Dhaka') }} </div>
                        
@@ -182,56 +173,68 @@
 
 
 
-                        console.log( {{ implode(',',$sprints) }});
+    console.log( {{ implode(',',$sprints) }});
 
-                        var sprints = {{ count($team->backlog->sprints) }} ;
+    var sprints = {{ count($team->backlog->sprints) }} ;
 
-                        var barChartData = {
-                            labels: [{{ implode(',', $sprints) }}],
-                            datasets: [{
-                                label: 'Completed Tasks',
-                                backgroundColor: window.chartColors.blue,
-                                data: [{{ implode(',', $completed_task_array) }}]
-                            }, {
-                                label: 'Overdue Tasks',
-                                backgroundColor: window.chartColors.red,
-                                data: [{{ implode(',', $overdue_task_array) }}]
-                            },{
-                                label: 'Scheduled Tasks',
-                                backgroundColor: window.chartColors.grey,
-                                data: [{{ implode(',', $scheduled_task_array) }}]
-                            }]
-                        };
-                        
-                        window.onload = loadChart();
-                        
-                        function loadChart() {
-                            var ctx = document.getElementById('canvas').getContext('2d');
-                            window.myBar = new Chart(ctx, {
-                                type: 'bar',
-                                data: barChartData,
-                                options: {
-                                    title: {
-                                        display: true,
-                                        
-                                    },
-                                    tooltips: {
-                                        mode: 'index',
-                                        intersect: false
-                                    },
-                                    responsive: true,
-                                    scales: {
-                                        xAxes: [{
-                                            stacked: true,
-                                        }],
-                                        yAxes: [{
-                                            stacked: true
-                                        }]
-                                    }
-                                }
-                            });
-                        };
-    </script>
+    var barChartData = {};
+
+    function reloadChartData(){
+        console.log('reload Chart data');
+
+        barChartData = {
+        labels: [{{ implode(',', $sprints) }}],
+        datasets: [{
+            label: 'Completed Tasks',
+            backgroundColor: window.chartColors.blue,
+            data: document.getElementById('completed_task_array').innerHTML
+        }, {
+            label: 'Overdue Tasks',
+            backgroundColor: window.chartColors.red,
+            data: document.getElementById('overdue_task_array').innerHTML
+        },{
+            label: 'Scheduled Tasks',
+            backgroundColor: window.chartColors.grey,
+            data: document.getElementById('scheduled_task_array').innerHTML
+        }]
+    };
+    }
+    
+    window.onload = loadChart();
+    
+
+    function loadChart() {
+
+        reloadChartData();
+        console.log('reload Chart');
+        console.log(barChartData);
+
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                title: {
+                    display: true,
+                    
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+            }
+        });
+    };
+</script>
 
 
 @endsection

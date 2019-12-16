@@ -22,6 +22,7 @@
                                 setEditTaskModalInfo();
                                 deleteTask();
                                 deleteSprint();
+                                loadChart();
                                 toggleIsCompleted()
                         });
 

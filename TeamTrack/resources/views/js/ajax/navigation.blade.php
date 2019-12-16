@@ -13,13 +13,13 @@
                     //Initialize functions
                     createSprint();
                     deleteSprint();
-
                     createTask();
                     deleteTask();
                     setEditTaskModalInfo();
                     editTask();
                     deleteTask();
                     toggleIsCompleted();
+                    loadChart();
                 });
             //Change window location
             //window.location.replace($(this).attr('href'));

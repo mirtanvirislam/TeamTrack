@@ -61,6 +61,7 @@
                             deleteTask();
                             deleteSprint();
                             toggleIsCompleted();
+                            loadChart();
                             console.log(data.message);
                     });
                     
