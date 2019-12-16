@@ -65,21 +65,42 @@ class TeamsController extends Controller
         $total_task_count = 0;
         $completed_task_count = 0;
         $incomplete_task_count = 0;
-        $sprintArray;
+        $sprint_array;
+        $completed_task_array;
+        $overdue_task_array;
+        $scheduled_task_array;
         $i = 0;
 
         foreach($team->backlog->sprints as $sprint)
         {
             $total_task_count += count($sprint->tasks);
-            $sprintArray[$i] = $sprint->sprint_no;
+            $sprint_array[$i] = $sprint->sprint_no;
+            $completed_task_on_current_sprint = 0;
+            $overdue_task_on_current_sprint = 0;
+            $scheduled_task_on_current_sprint = 0;
 
             foreach($sprint->tasks as $task)
             {
-                if($task->is_completed)
+                if($task->due_date < date('Y-m-d'))
                 {
-                    $completed_task_count++;
+                    if($task->is_completed)
+                    {
+                        $completed_task_count++;
+                        $completed_task_on_current_sprint++;
+                    }
+                    else
+                    {
+                        $overdue_task_on_current_sprint++;
+                    }
+                }
+                else
+                {
+                    $scheduled_task_on_current_sprint++;
                 }
             }
+            $completed_task_array[$i] = $completed_task_on_current_sprint;
+            $overdue_task_array[$i] = $overdue_task_on_current_sprint;
+            $scheduled_task_array[$i] = $scheduled_task_on_current_sprint;
             $i++;
         }
 
@@ -89,7 +110,10 @@ class TeamsController extends Controller
             ->with('members', $membersArray)
             ->with('total_task_count', $total_task_count)
             ->with('completed_task_count',$completed_task_count)
-            ->with('sprints', $sprintArray);
+            ->with('sprints', $sprint_array)
+            ->with('completed_task_array',$completed_task_array)
+            ->with('overdue_task_array',$overdue_task_array)
+            ->with('scheduled_task_array',$scheduled_task_array);
     }
 
     public function destroy($id)
