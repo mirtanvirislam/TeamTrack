@@ -46,6 +46,13 @@
                     @foreach($team->users as $user)
                         <!-- Each Member --> <hr>
                         <h5> {{$user->name}} </h5>
+
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" 
+                                style="width: {{ (count(App\Task::where('user_id',$user->id)->where('is_completed',1)->get())/count(App\Task::where('user_id',$user->id)->get()) )*100 }}%" 
+                                ></div>
+                        </div>
+
                         Total task : {{ $total_task = count(App\Task::where('user_id',$user->id)->get())}} <br>
                         Completed task : {{ $completed_task = count(App\Task::where('user_id',$user->id)->where('is_completed',1)->get())}} <br>
                         Incomplete task : {{ $total_task-$completed_task }}

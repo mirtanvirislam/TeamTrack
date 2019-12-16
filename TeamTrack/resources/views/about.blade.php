@@ -17,6 +17,10 @@
                     Make work life simpler, more pleasant and more productive.
                 </h5>
                 
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 60%" ></div>
+                </div>
+
                 <canvas id="canvas" width="400" height="200"></canvas>
 
                 <script>
