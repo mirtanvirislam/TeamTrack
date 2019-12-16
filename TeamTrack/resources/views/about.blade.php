@@ -2,77 +2,52 @@
 
 @include('layouts.cssimports')
 @include('js.jsimports')
-{{-- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
-<script src="https://www.chartjs.org/samples/latest/utils.js"></script> --}}
+
+    <link href='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css' rel='stylesheet' />
+    <link href='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css' rel='stylesheet' />
+
+    <script src='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js'></script>
+    <script src='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js'></script>
+
+<script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+           plugins: [ 'dayGrid' ],
+           events: [
+                {
+                    title: 'Collect Data',
+                    start: '2019-12-12',
+                    end: '2019-12-12',
+                    color: 'rgb(100,100,100)',   // an option!
+                    textColor: 'white',// an option!
+                }
+                // more events ...
+            ],
+            
+            
+        });
+
+        calendar.render();
+      });
+
+</script>
 
 <body>
     <div class="container p-4">
         <div class="row justify-content-center card p-4">
             <div class="col-md-8 p-4">
+
                 <h1>About TeamTrack</h1>
                 <hr>
                 <h5>
                     Make work life simpler, more pleasant and more productive.
                 </h5>
                 
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 60%" ></div>
-                </div>
-
-                <canvas id="canvas" width="400" height="200"></canvas>
-
-                <script>
-                    var barChartData = {
-                        labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6', 'Sprint 7'],
-                        datasets: [{
-                            label: 'Completed Tasks',
-                            backgroundColor: window.chartColors.blue,
-                            data: [4, 3, 2, 0, 0, 0,0]
-                        }, {
-                            label: 'Overdue Tasks',
-                            backgroundColor: window.chartColors.red,
-                            data: [
-                                0,0,1,0,0,0,0
-                            ]
-                        },{
-                            label: 'Scheduled Tasks',
-                            backgroundColor: window.chartColors.grey,
-                            data: [
-                                0,0,0,3,4,3,4
-                            ]
-                        }]
-
-                    };
-                    window.onload = function() {
-                        var ctx = document.getElementById('canvas').getContext('2d');
-                        window.myBar = new Chart(ctx, {
-                            type: 'bar',
-                            data: barChartData,
-                            options: {
-                                title: {
-                                    display: true,
-                                    
-                                },
-                                tooltips: {
-                                    mode: 'index',
-                                    intersect: false
-                                },
-                                responsive: true,
-                                scales: {
-                                    xAxes: [{
-                                        stacked: true,
-                                    }],
-                                    yAxes: [{
-                                        stacked: true
-                                    }]
-                                }
-                            }
-                        });
-                    };
-                </script>
-
+                <div id='calendar'></div>
+               
             </div>
         </div>
     </div>
