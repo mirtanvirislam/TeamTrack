@@ -13,6 +13,7 @@
                     //Initialize functions
                     createSprint();
                     deleteSprint();
+                    setSprintId();
                     createTask();
                     deleteTask();
                     setEditTaskModalInfo();

@@ -39,7 +39,7 @@
         </div>
 
         <div class="well card m-3 p-3">
-            <div class="sprint-view  team-member">
+            <div class="team-member-tasks">
                 <h4>Team members tasks</h4>
 
                 <!-- Member list -->
@@ -47,26 +47,44 @@
                         <!-- Each Member --> <hr>
                         <h5> {{$user->name}} </h5>
 
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped" role="progressbar" 
-                                style="width: {{ (count(App\Task::where('user_id',$user->id)->where('is_completed',1)->get())/count(App\Task::where('user_id',$user->id)->get()) )*100 }}%" 
-                                ></div>
-                        </div>
+                            <!--Count tasks -->
+                            <div hidden>
+                                Total task : {{ $total_task=0}} <br>
+                                Completed task : {{ $completed_task = 0}} <br>
+                                
+                                @foreach($team->backlog->sprints as $sprint)
+                                    @foreach($sprint->tasks->where('user_id',$user->id) as $task)
+                                        {{$total_task++}}
+                                            @if($task->is_completed)
+                                                {{$completed_task++}}   
+                                            @endif
+                                    @endforeach
+                                @endforeach
+                            </div>
 
-                        Total task : {{ $total_task = count(App\Task::where('user_id',$user->id)->get())}} <br>
-                        Completed task : {{ $completed_task = count(App\Task::where('user_id',$user->id)->where('is_completed',1)->get())}} <br>
-                        Incomplete task : {{ $total_task-$completed_task }}
+                            <div>
+                                @if( $total_task > 0)
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped" role="progressbar" 
+                                            style="width: {{ ( $completed_task/$total_task )*100 }}%" 
+                                            ></div>
+                                    </div>  
+                                @endif
+
+                                Total task : {{ $total_task }} <br>
+                                Completed task : {{ $completed_task }} <br>
+                                Incomplete task : {{ $total_task-$completed_task }}
+                            </div>
+
                             <!-- Member tasks -->
-
                             @foreach($team->backlog->sprints as $sprint)
                                 @foreach($sprint->tasks->where('user_id',$user->id) as $task)
-                                    
                                     <!-- Task -->
                                     <div class="card m-2 pb-1 pt-3 pl-3 pr-3">
                                         <div id="task{{$task->id}}">       
-
+                                            
                                             <h5 id="taskTitle">
-                                                @if($task->is_completed)   
+                                                @if($task->is_completed)
                                                     <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>
                                                 @else
                                                     <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}">
@@ -133,6 +151,7 @@
 
                                 @endforeach
                             @endforeach
+
                         <br>
                     @endforeach
             </div>
@@ -154,10 +173,5 @@
     @include('modals.edit_task_modal')
     @include('modals.reassign_task_modal')
     @include('modals.reschedule_task_modal')
-
-
-
-
-
 
 @endsection

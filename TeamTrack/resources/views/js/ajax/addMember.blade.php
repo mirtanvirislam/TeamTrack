@@ -18,7 +18,7 @@
             data:{email:email},
             success:function(data){
                     console.log(data.message);
-                    $('.team-member').load( window.location.pathname.concat(' .team-member'),
+                    $('.content').load( window.location.pathname.concat(' .content'),
                         function(responseText, textStatus, XMLHttpRequest){
                             removeMember();
                     });

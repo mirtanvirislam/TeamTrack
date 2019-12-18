@@ -20,7 +20,7 @@
                             removeMember();
                     });
 
-                     $('.sprint-view').load( window.location.pathname.concat(' .sprint-view'),
+                     $('.content').load( window.location.pathname.concat(' .content'),
                               function(responseText, textStatus, XMLHttpRequest){
                                    setSprintId();
                                    setEditTaskModalInfo();

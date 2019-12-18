@@ -56,11 +56,13 @@
                             <!-- Each Member --> <hr>
                             <h6> {{$user->name}} </h6>
 
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" 
-                                    style="width: {{ (count(App\Task::where('user_id',$user->id)->where('is_completed',1)->get())/count(App\Task::where('user_id',$user->id)->get()) )*100 }}%" 
-                                    ></div>
-                            </div>
+                             @if(count(App\Task::where('user_id',$user->id)->get()) > 0)
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped" role="progressbar" 
+                                        style="width: {{ (count(App\Task::where('user_id',$user->id)->where('is_completed',1)->get())/count(App\Task::where('user_id',$user->id)->get()) )*100 }}%" 
+                                        ></div>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -172,7 +174,8 @@
                                                                      
                                         <div class="collapse" id="t{{$task->id}}">
                                             <h6>{{$task->description}}</h6>
-                                            Created by : {{App\User::find($task->created_by)->name}}
+                                            Created by : {{App\User::find($task->created_by)->name}} <br>
+                                            Created at : {{$task->created_at}}
                                         </div>
                                                                            
                                     </div>
