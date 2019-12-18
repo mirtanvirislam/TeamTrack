@@ -9,6 +9,7 @@
 @include('js.ajax.createTask')
 @include('js.ajax.editTask')
 @include('js.ajax.reassignTask')
+@include('js.ajax.rescheduleTask')
 @include('js.ajax.deleteTask')
 @include('js.ajax.toggleIsCompleted')
 
