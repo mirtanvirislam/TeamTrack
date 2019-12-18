@@ -11,12 +11,6 @@
 
         <div>
 
-            <a class="new-sprint-submit float-right">
-                <button class="btn btn-primary">Add Sprint</button>
-            </a> 
-
-            
-            
             @can('destroyTeam', $team)
                 <br><br>
                 {!! Form::open(['action' => ['TeamsController@destroy', $team->id], 'method' => 'DELETE', 'enctype' => 'multipart/form-data']) !!}
@@ -37,7 +31,7 @@
                         <b> Completed task : {{$completed_task_count}} </b>
                     </button>
                     <button class="btn  btn-secondary btn-pill float-left mr-4" disabled>
-                        <b> Incomplete task : {{ $total_task_count - $completed_task_count }} </b>
+                        <b> Remaining task : {{ $total_task_count - $completed_task_count }} </b>
                     </button>
                     <button class="btn  btn-danger btn-pill float-left mr-4" disabled>
                         <b> Overdue task : </b>
@@ -185,6 +179,13 @@
                     </div>
                 @endforeach 
             </div>
+
+            <br>
+
+            <a class="new-sprint-submit m-2">
+                <button class="btn btn-primary">Add Sprint</button>
+            </a> 
+
         </div>
     </div>
 
