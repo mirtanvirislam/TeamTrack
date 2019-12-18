@@ -28,8 +28,8 @@
                         {{Form::text('title4', '' , ['class' => 'form-control', 'id'=>'title-text-field4','placeholder' => 'Task Name', 'maxlength' => 180, 'disabled'])}}
                     </div>
                     <div class="form-group">
-                        {{Form::label('assignedTo4', 'Assign Task to')}}
-                        {{Form::select('assignedTo4', array($members), null, ['class' => 'form-control', 'id'=>'assigned-to-field4', "placeholder" => "Pick member", 'disabled'])}}
+                        {{-- {{Form::label('assignedTo4', 'Assign Task to')}} --}}
+                        {{Form::select('assignedTo4', array($members), null, ['class' => 'form-control', 'id'=>'assigned-to-field4', "placeholder" => "Pick member", 'hidden'])}}
                     </div>
                      <div class="form-group">
                         {{Form::label('dueDate4', 'Due Date')}}
@@ -51,7 +51,7 @@
 
  <script type="text/javascript">
     $(function() {
-        $( "#datepicker2" ).datepicker({
+        $( "#datepicker4" ).datepicker({
             format: 'yyyy-mm-dd'
         });
     });

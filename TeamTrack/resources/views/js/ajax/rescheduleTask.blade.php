@@ -1,11 +1,11 @@
 <script type="text/javascript">
 
-    document.onload = setReassignTaskModalInfo();
-    document.onload = reassignTask();
+    document.onload = setRescheduleTaskModalInfo();
+    document.onload = rescheduleTask();
 
-    function setReassignTaskModalInfo()
+    function setRescheduleTaskModalInfo()
     {
-        $(".reassign-task-modal").off('click').click(function(e){
+        $(".reschedule-task-modal").off('click').click(function(e){
 
             taskId = $(this).attr('taskId');
             isCompleted = e.target.parentElement.parentElement.querySelector('#taskIsCompleted').innerHTML;
@@ -14,36 +14,36 @@
             assignedTo = e.target.parentElement.parentElement.querySelector('#taskAssignedToId').innerHTML;
             title = e.target.parentElement.parentElement.querySelector('#taskTitleText').innerHTML;
             description = e.target.parentElement.parentElement.querySelector('#taskDescription').innerHTML;
-            console.log('setReassignTaskModalInfo called. task: '.concat(taskId));
+            console.log('setRescheduleTaskModalInfo called. task: '.concat(taskId));
 
-                document.getElementById("sprint-id-text-field3").value = sprintId;
-                document.getElementById("isCompleted-field3").value = isCompleted;
-                document.getElementById("task-id-text-field3").value = taskId;
-                document.getElementById("assigned-to-field3").value = assignedTo;
-                document.getElementById("datepicker3").value = dueDate;
-                document.getElementById("title-text-field3").value = title;
-                document.getElementById("description-text-field3").value = description;
+                document.getElementById("sprint-id-text-field4").value = sprintId;
+                document.getElementById("isCompleted-field4").value = isCompleted;
+                document.getElementById("task-id-text-field4").value = taskId;
+                document.getElementById("assigned-to-field4").value = assignedTo;
+                document.getElementById("datepicker4").value = dueDate;
+                document.getElementById("title-text-field4").value = title;
+                document.getElementById("description-text-field4").value = description;
                 
         });
     }
     
-    function reassignTask()
+    function rescheduleTask()
     {
         $( "#datepicker" ).datepicker({
                 format: 'yyyy-mm-dd'
             });
 
-        $(".reassign-task-submit").off('click').click(function(e){
+        $(".reschedule-task-submit").off('click').click(function(e){
             e.preventDefault();
-            console.log('reassignTask called');
+            console.log('rescheduleTask called');
 
-            var sprintId = $("input[name=sprintId3]").val();
-            var isCompleted = $("input[name=isCompleted3]").val();
-            var taskId = $("input[name=taskId3]").val();
-            var assignedTo = $("select[name=assignedTo3]").val();
-            var title = $("input[name=title3]").val();
-            var description = $("textarea[name=description3]").val();
-            var dueDate = $("input[name=dueDate3]").val();
+            var sprintId = $("input[name=sprintId4]").val();
+            var isCompleted = $("input[name=isCompleted4]").val();
+            var taskId = $("input[name=taskId4]").val();
+            var assignedTo = $("select[name=assignedTo4]").val();
+            var title = $("input[name=title4]").val();
+            var description = $("textarea[name=description4]").val();
+            var dueDate = $("input[name=dueDate4]").val();
 
             $.ajax({
             type:'PUT',

@@ -72,18 +72,6 @@
                                             {{$task->title}} 
                                         
                                             @can('updateTask', $task)                                                 
-                                                <button 
-                                                    class="edit-task-modal btn btn-primary float-right" 
-                                                    taskId="{{$task->id}}" 
-                                                    sprint="{{$task->sprint_id}}" 
-                                                    data-toggle="modal" 
-                                                    data-target="#editTaskModal">
-                                                    <i class="fa fa-edit"></i>
-                                                        Edit
-                                                </button>
-                                            @endcan
-
-                                            @can('updateTask', $task)                                                 
                                                 <button
                                                     class="reassign-task-modal btn btn-primary float-right mr-2"
                                                     taskId="{{$task->id}}" 
@@ -94,7 +82,11 @@
                                                 </button>
 
                                                 <button
-                                                    class="btn btn-primary float-right mr-2">
+                                                    class="reschedule-task-modal btn btn-primary float-right mr-2"
+                                                    taskId="{{$task->id}}" 
+                                                    sprint="{{$task->sprint_id}}" 
+                                                    data-toggle="modal" 
+                                                    data-target="#rescheduleTaskModal">
                                                     Re-schedule
                                                 </button>
                                             @endcan
