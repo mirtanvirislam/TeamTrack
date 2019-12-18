@@ -19,6 +19,10 @@
                         function(responseText, textStatus, XMLHttpRequest){
                             setSprintId();
                             setEditTaskModalInfo();
+                            setReassignTaskModalInfo();
+                            reassignTask();
+                            setRescheduleTaskModalInfo();
+                            rescheduleTask();
                             deleteTask();
                             deleteSprint();
                             toggleIsCompleted();

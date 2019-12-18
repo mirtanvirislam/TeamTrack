@@ -17,6 +17,10 @@
                     deleteTask();
                     setEditTaskModalInfo();
                     editTask();
+                    setReassignTaskModalInfo();
+                    reassignTask();
+                    setRescheduleTaskModalInfo();
+                    rescheduleTask();
                     deleteTask();
                     toggleIsCompleted();
                     loadChart();

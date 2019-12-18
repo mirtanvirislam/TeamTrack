@@ -20,6 +20,9 @@
                     function(responseText, textStatus, XMLHttpRequest){
                         setSprintId();
                         setEditTaskModalInfo();
+                        reassignTask();
+                        setRescheduleTaskModalInfo();
+                        rescheduleTask();
                         deleteTask();
                         deleteSprint();
                         loadChart();

@@ -5,6 +5,13 @@
 
     function setReassignTaskModalInfo()
     {
+
+        $(function() {
+            $( "#datepicker4" ).datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+
         $(".reassign-task-modal").off('click').click(function(e){
 
             taskId = $(this).attr('taskId');
@@ -54,6 +61,10 @@
                         function(responseText, textStatus, XMLHttpRequest){
                             setSprintId();
                             setEditTaskModalInfo();
+                            setReassignTaskModalInfo();
+                            reassignTask();
+                            setRescheduleTaskModalInfo();
+                            rescheduleTask();
                             deleteTask();
                             deleteSprint();
                             toggleIsCompleted();
