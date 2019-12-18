@@ -39,7 +39,7 @@
         </div>
 
         <div class="well card m-3 p-3">
-            <div class="team-member">
+            <div class="sprint-view  team-member">
                 <h4>Team members tasks</h4>
 
                 <!-- Member list -->
