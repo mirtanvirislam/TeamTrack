@@ -57,76 +57,81 @@
                         Completed task : {{ $completed_task = count(App\Task::where('user_id',$user->id)->where('is_completed',1)->get())}} <br>
                         Incomplete task : {{ $total_task-$completed_task }}
                             <!-- Member tasks -->
-                            @foreach(App\Task::where('user_id',$user->id)->get() as $task)
-                                <!-- Task -->
-                                <div class="card m-2 pb-1 pt-3 pl-3 pr-3">
-                                    <div id="task{{$task->id}}">       
 
-                                        <h5 id="taskTitle">
-                                            @if($task->is_completed)   
-												<input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>
-											@else
-												<input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}">
-											@endif
+                            @foreach($team->backlog->sprints as $sprint)
+                                @foreach($sprint->tasks->where('user_id',$user->id) as $task)
+                                    
+                                    <!-- Task -->
+                                    <div class="card m-2 pb-1 pt-3 pl-3 pr-3">
+                                        <div id="task{{$task->id}}">       
 
-                                            {{$task->title}} 
-                                        
-                                            @can('updateTask', $task)                                                 
+                                            <h5 id="taskTitle">
+                                                @if($task->is_completed)   
+                                                    <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}" checked>
+                                                @else
+                                                    <input type="checkbox" class="checkbox toggleIsCompleted" taskId="{{$task->id}}">
+                                                @endif
+
+                                                {{$task->title}} 
+                                            
+                                                @can('updateTask', $task)                                                 
+                                                    <button
+                                                        class="reassign-task-modal btn btn-primary float-right mr-2"
+                                                        taskId="{{$task->id}}" 
+                                                        sprint="{{$task->sprint_id}}" 
+                                                        data-toggle="modal" 
+                                                        data-target="#reassignTaskModal">
+                                                        Re-assign
+                                                    </button>
+
+                                                    <button
+                                                        class="reschedule-task-modal btn btn-primary float-right mr-2"
+                                                        taskId="{{$task->id}}" 
+                                                        sprint="{{$task->sprint_id}}" 
+                                                        data-toggle="modal" 
+                                                        data-target="#rescheduleTaskModal">
+                                                        Re-schedule
+                                                    </button>
+                                                @endcan
+                                                    
+                                                <i class="btn float-right material-icons align-middle" data-toggle="collapse" data-target="#t{{$task->id}}" aria-expanded="false" aria-controls="collapseExample">
+                                                    info
+                                                </i>
+
                                                 <button
-                                                    class="reassign-task-modal btn btn-primary float-right mr-2"
-                                                    taskId="{{$task->id}}" 
-                                                    sprint="{{$task->sprint_id}}" 
-                                                    data-toggle="modal" 
-                                                    data-target="#reassignTaskModal">
-                                                    Re-assign
+                                                    class="btn btn-outline-secondary btn-pill float-right mr-4" disabled>
+                                                    {{$task->due_date}}
                                                 </button>
 
-                                                <button
-                                                    class="reschedule-task-modal btn btn-primary float-right mr-2"
-                                                    taskId="{{$task->id}}" 
-                                                    sprint="{{$task->sprint_id}}" 
-                                                    data-toggle="modal" 
-                                                    data-target="#rescheduleTaskModal">
-                                                    Re-schedule
-                                                </button>
-                                            @endcan
-                                                
-                                            <i class="btn float-right material-icons align-middle" data-toggle="collapse" data-target="#t{{$task->id}}" aria-expanded="false" aria-controls="collapseExample">
-                                                info
-                                            </i>
+                                                @if( ($task->due_date < date('Y-m-d')) && $task->is_completed==0 )
+                                                    <button class="btn btn-danger btn-pill float-right mr-4" disabled>
+                                                        Overdue : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
+                                                    </button>
+                                                @elseif( $task->is_completed==0 )
+                                                    <button class="btn btn-secondary btn-pill float-right mr-4" disabled>
+                                                        Due : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
+                                                    </button>
+                                                @endif                                               
+                                            
+                                            </h5> 
 
-                                            <button
-                                                class="btn btn-outline-secondary btn-pill float-right mr-4" disabled>
-                                                {{$task->due_date}}
-                                            </button>
-
-                                            @if( ($task->due_date < date('Y-m-d')) && $task->is_completed==0 )
-                                                <button class="btn btn-danger btn-pill float-right mr-4" disabled>
-                                                    Overdue : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
-                                                </button>
-                                            @elseif( $task->is_completed==0 )
-                                                <button class="btn btn-secondary btn-pill float-right mr-4" disabled>
-                                                    Due : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
-                                                </button>
-                                            @endif                                               
-                                        
-                                        </h5> 
-
-                                        <h6 id="taskDescription" hidden> {{$task->description}} </h6>
-                                        <h6 id="taskSprintId" hidden>{{$task->sprint_id}}</h6>
-                                        <h6 id="taskTitleText" hidden>{{$task->title}}</h6>
-                                        <h6 id="taskAssignedToId" hidden>{{$task->user_id}}</h6>
-                                        <h6 id="taskIsCompleted" hidden>{{$task->is_completed}}</h6>
-                                        <h6 id="taskDueDate" hidden>{{$task->due_date}}</h6>
-                                        <div id="task{{$task->id}}AssignedTo" hidden>{{App\User::find($task->user_id)->id}}</div>
-                                                                    
-                                        <div class="collapse" id="t{{$task->id}}">
-                                            <h6>{{$task->description}}</h6>
-                                            Created by : {{App\User::find($task->created_by)->name}}
-                                        </div>
+                                            <h6 id="taskDescription" hidden> {{$task->description}} </h6>
+                                            <h6 id="taskSprintId" hidden>{{$task->sprint_id}}</h6>
+                                            <h6 id="taskTitleText" hidden>{{$task->title}}</h6>
+                                            <h6 id="taskAssignedToId" hidden>{{$task->user_id}}</h6>
+                                            <h6 id="taskIsCompleted" hidden>{{$task->is_completed}}</h6>
+                                            <h6 id="taskDueDate" hidden>{{$task->due_date}}</h6>
+                                            <div id="task{{$task->id}}AssignedTo" hidden>{{App\User::find($task->user_id)->id}}</div>
                                                                         
+                                            <div class="collapse" id="t{{$task->id}}">
+                                                <h6>{{$task->description}}</h6>
+                                                Created by : {{App\User::find($task->created_by)->name}}
+                                            </div>
+                                                                            
+                                        </div>
                                     </div>
-                                </div>
+
+                                @endforeach
                             @endforeach
                         <br>
                     @endforeach
