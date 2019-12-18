@@ -29,6 +29,8 @@
             //window.location.replace($(this).attr('href'));
             window.history.pushState('', 'Title', $(this).attr('href'));
         });
+
+
     }
 
 </script>

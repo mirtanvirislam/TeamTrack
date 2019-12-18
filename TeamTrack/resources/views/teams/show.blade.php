@@ -22,6 +22,10 @@
             
 
             <div class="sprint-view rowview">
+
+                <script type="text/javascript">
+                    console.log("yesss");
+                </script>
                                   
                 <div id='stat'>
                     <button class="btn  btn-secondary btn-pill float-left mr-4" disabled>
@@ -196,18 +200,8 @@
 <script type="text/javascript">
 
     console.log('load1');
-    $(function() {
-        $( "#datepicker" ).datepicker({
-            format: 'yyyy-mm-dd'
-        });
-    });
-
-
-
-    console.log( {{ implode(',',$sprints) }});
-
+  
     var sprints = {{ count($team->backlog->sprints) }} ;
-
     var barChartData = {};
 
     function reloadChartData(){

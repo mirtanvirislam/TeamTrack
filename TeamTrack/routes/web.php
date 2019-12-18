@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
@@ -52,7 +53,6 @@ Route::resource('comments', 'CommentsController');
 // Team Routes
 //Route::get('teams','TeamsController@index');
 
-Route::get('teamsmasterindex','TeamsController@masterindex');
 Route::get('teams/create','TeamsController@create');
 Route::get('teams/{id}','TeamsController@show'); // Team deshboard page - currents shows member list
 Route::get('teams','TeamsController@index');

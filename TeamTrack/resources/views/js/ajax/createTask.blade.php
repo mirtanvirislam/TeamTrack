@@ -16,6 +16,8 @@
     {
         console.log('newTask');
 
+        
+
         $( "#datepicker" ).datepicker({
                 format: 'yyyy-mm-dd'
             });
