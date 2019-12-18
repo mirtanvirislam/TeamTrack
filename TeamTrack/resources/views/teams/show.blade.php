@@ -30,17 +30,47 @@
             <div class="sprint-view rowview">
                                   
                 <div id='stat'>
-                    Total task : {{$total_task_count}} ,
-                    Completed task : {{$completed_task_count}} ,
-                    Incomplete task : {{ $total_task_count - $completed_task_count }} ,
-                    Overdue task :
+                    <button class="btn  btn-secondary btn-pill float-left mr-4" disabled>
+                        <b> Total task : {{$total_task_count}} </b>
+                    </button>
+                    <button class="btn  btn-primary btn-pill float-left mr-4" disabled>
+                        <b> Completed task : {{$completed_task_count}} </b>
+                    </button>
+                    <button class="btn  btn-secondary btn-pill float-left mr-4" disabled>
+                        <b> Incomplete task : {{ $total_task_count - $completed_task_count }} </b>
+                    </button>
+                    <button class="btn  btn-danger btn-pill float-left mr-4" disabled>
+                        <b> Overdue task : </b>
+                    </button>
+                    
                     <div id="completed_task_array" hidden>{{ implode('', $completed_task_array) }}</div>
                     <div id="overdue_task_array" hidden>{{ implode('', $overdue_task_array) }}</div>
                     <div id="scheduled_task_array" hidden>{{ implode('', $scheduled_task_array) }}</div>
                 </div>
                 <br>
                 
-                <canvas id="canvas" width="600" height="200"></canvas>
+                <div class="d-flex w-100 bd-highlight">
+                    <div class="p-2 flex-fill w-100 bd-highlight">
+                         <canvas id="canvas" width="600" height="200"></canvas>
+                    </div>
+                    <div class="p-2 flex-fill bd-highlight">
+                        @foreach($team->users as $user)
+                            <!-- Each Member --> <hr>
+                            <h6> {{$user->name}} </h6>
+
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" 
+                                    style="width: {{ (count(App\Task::where('user_id',$user->id)->where('is_completed',1)->get())/count(App\Task::where('user_id',$user->id)->get()) )*100 }}%" 
+                                    ></div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+               
+
+                
+
 
                 {{count($team->backlog->sprints)}} Sprints <br><br>
                 <div hidden> {{date_default_timezone_set('Asia/Dhaka') }} </div>
