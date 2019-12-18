@@ -8,6 +8,7 @@
 @include('js.ajax.deleteSprint')
 @include('js.ajax.createTask')
 @include('js.ajax.editTask')
+@include('js.ajax.reassignTask')
 @include('js.ajax.deleteTask')
 @include('js.ajax.toggleIsCompleted')
 

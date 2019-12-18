@@ -27,7 +27,7 @@
                                 <!-- Don't display remove btn if user is leader -->
                                 @can('removeMember', $team)
                                     <button 
-                                        class="remove-member btn btn-outline-danger"
+                                        class="remove-member btn btn-outline-danger mb-2"
                                         userId="{{$user->id}}">
                                             Remove 
                                     </button>
@@ -85,9 +85,14 @@
 
                                             @can('updateTask', $task)                                                 
                                                 <button
-                                                     class="btn btn-primary float-right mr-2" >
+                                                    class="reassign-task-modal btn btn-primary float-right mr-2"
+                                                    taskId="{{$task->id}}" 
+                                                    sprint="{{$task->sprint_id}}" 
+                                                    data-toggle="modal" 
+                                                    data-target="#reassignTaskModal">
                                                     Re-assign
                                                 </button>
+
                                                 <button
                                                     class="btn btn-primary float-right mr-2">
                                                     Re-schedule
@@ -150,5 +155,7 @@
     </div>
 
     @include('modals.edit_task_modal')
+    @include('modals.reassign_task_modal')
+    @include('modals.reschedule_task_modal')
 
 @endsection
