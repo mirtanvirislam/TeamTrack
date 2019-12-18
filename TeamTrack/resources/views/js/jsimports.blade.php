@@ -9,7 +9,11 @@
 <script src="{{ asset('template/scripts/extras.1.1.0.min.js') }}"></script>
 <script src="{{ asset('template/scripts/shards-dashboards.1.1.0.min.js') }}"></script>
 <script src="{{ asset('template/scripts/app/app-blog-overview.1.1.0.js') }}"></script>
+    <link href='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css' rel='stylesheet' />
+    <link href='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css' rel='stylesheet' />
 
+    <script src='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js'></script>
+    <script src='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js'></script>
 
 
 @include('js.ajaxfunctions')
