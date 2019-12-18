@@ -5,6 +5,11 @@
 
     function setEditTaskModalInfo()
     {
+
+        $( "#datepicker2" ).datepicker({
+                format: 'yyyy-mm-dd'
+            });
+
         $(".edit-task-modal").off('click').click(function(e){
 
             taskId = $(this).attr('taskId');
@@ -29,9 +34,6 @@
     
     function editTask()
     {
-        $( "#datepicker" ).datepicker({
-                format: 'yyyy-mm-dd'
-            });
 
         $(".edit-task-submit").off('click').click(function(e){
             e.preventDefault();
