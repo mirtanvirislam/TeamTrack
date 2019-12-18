@@ -36,8 +36,18 @@ class MembersController extends Controller
     public function show($id)
     {
         $team = Team::find($id);
+
+        $members = Team::find(Auth::user()->getCurrentTeamId())->members;
+        $membersArray;
+        foreach($members as $member)
+        {
+            $membersArray[$member->id] = $member->name;
+        }
+
         $this->authorize('viewTeam', $team);
-        return view('teams.members')->with('team',$team);
+        return view('teams.members')
+            ->with('team',$team)
+            ->with('members', $membersArray);
     }
 
 

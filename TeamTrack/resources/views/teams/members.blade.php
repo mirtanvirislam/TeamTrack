@@ -82,6 +82,17 @@
                                                         Edit
                                                 </button>
                                             @endcan
+
+                                            @can('updateTask', $task)                                                 
+                                                <button
+                                                     class="btn btn-primary float-right mr-2" >
+                                                    Re-assign
+                                                </button>
+                                                <button
+                                                    class="btn btn-primary float-right mr-2">
+                                                    Re-schedule
+                                                </button>
+                                            @endcan
                                                 
                                             <i class="btn float-right material-icons align-middle" data-toggle="collapse" data-target="#t{{$task->id}}" aria-expanded="false" aria-controls="collapseExample">
                                                 info
@@ -96,7 +107,7 @@
                                                 <button class="btn btn-danger btn-pill float-right mr-4" disabled>
                                                     Overdue : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
                                                 </button>
-                                            @else
+                                            @elseif( $task->is_completed==0 )
                                                 <button class="btn btn-secondary btn-pill float-right mr-4" disabled>
                                                     Due : {{ date_diff( date_create($task->due_date) , date_create(date('Y-m-d')))->format('%a days') }}
                                                 </button>
@@ -137,5 +148,7 @@
         @include('modals.new_member_modal')
 
     </div>
+
+    @include('modals.edit_task_modal')
 
 @endsection
