@@ -22,6 +22,10 @@ A platform where you can keep your To-do list.
 
 ![](TeamTrack/images/4.png)
 
+### Adding Task
+
+![](TeamTrack/images/8.png)
+
 ### Team Member list
 
 ![](TeamTrack/images/5.png)
@@ -29,3 +33,7 @@ A platform where you can keep your To-do list.
 ### My Tasks
 
 ![](TeamTrack/images/6.png)
+
+### Selecting Team
+
+![](TeamTrack/images/7.png)
